@@ -2,7 +2,7 @@ import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
 
 // Users table
 export const users = pgTable('users', {
-  id: uuid('id').primaryKey().defaultRandom(),
+  id: text('id').primaryKey().notNull(),
   email: text('email').unique().notNull(),
   name: text('name').notNull(),
   role: text('role', { enum: ['developer', 'manager'] }).notNull(),
@@ -12,7 +12,7 @@ export const users = pgTable('users', {
 // Standups table
 export const standups = pgTable('standups', {
   id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id')
+  userId: text('user_id')
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
   status: text('status', {
