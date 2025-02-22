@@ -1,0 +1,15 @@
+---
+description: Drizzle ORM Best Practices
+globs: 
+---
+
+# Drizzle ORM Best Practices:
+
+- Use Drizzle ORM for type-safe database queries and migrations
+- Implement proper database connection pooling for improved performance
+- Utilize Drizzle's query builder for complex and reusable queries
+- Implement proper transaction handling for data integrity
+- Use Drizzle's migration system for version-controlled schema changes
+- Implement proper error handling and logging for database operations
+- Any schema columns that reference another table should have cascade delete enabled
+- Index names should be unique and begin with the table name. Example, userIdIndex: index('team_memberships_user_id_idx').on(table.userId)

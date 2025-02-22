@@ -1,0 +1,13 @@
+---
+description: Zustand State Management
+globs: 
+---
+
+# Zustand Best Practices
+
+- Use Zustand for simple and efficient state management
+- Implement proper state slicing for better performance and reduced re-renders
+- Utilize Zustand's middleware for logging, devtools, and persistence
+- Implement proper state hydration for server-side rendering
+- Use Zustand's shallow comparison for optimizing performance
+- Implement proper error handling in state updates and actions

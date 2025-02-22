@@ -1,0 +1,61 @@
+---
+description: Zod Schema Best Practices
+globs: 
+---
+ # Zod Schema Best Practices
+
+Reference: [Zod Documentation](mdc:https:/zod.dev)
+
+## Naming Conventions
+- Use PascalCase for schema names (e.g., `UserSchema`, `PostSchema`)
+- Suffix all schema variables with `Schema`
+- For input/output validation schemas, use `Input` or `Output` before `Schema` (e.g., `UserInputSchema`)
+
+## Schema Structure
+- Create base schemas for common properties that can be extended
+- Use `.extend()` instead of creating entirely new schemas when possible
+- Keep schemas DRY by reusing common patterns
+- Use `.optional()` instead of making separate schemas for optional fields
+
+## Type Safety
+- Always use `z.enum()` or `z.literal()` for fixed string values
+- Use `z.record()` for dynamic key-value structures
+- Prefer `.transform()` over type assertions
+- Use `.refine()` for complex validations
+
+## Best Practices
+- Add `.describe()` for complex schemas to document their purpose, especially when used with AI generation
+- Use discriminated unions with `z.discriminatedUnion()` for polymorphic types
+- Keep validation logic in the schema, not in the application code
+- Use `.pipe()` for sequential transformations
+- Leverage `.catch()` for providing default values
+
+## Common Patterns
+```typescript
+// Reusable base schema
+const BaseSchema = z.object({
+  id: z.string().uuid(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+// Extending base schema
+const EntitySchema = BaseSchema.extend({
+  name: z.string().min(1),
+  metadata: z.record(z.unknown()).optional(),
+});
+
+// Discriminated union
+const ResultSchema = z.discriminatedUnion('type', [
+  z.object({ type: z.literal('success'), data: z.unknown() }),
+  z.object({ type: z.literal('error'), error: z.string() }),
+]);
+
+// Transform example
+const NumberStringSchema = z.string().transform((val) => Number(val));
+
+// Refined validation
+const PositiveNumberSchema = z.number().refine((n) => n > 0, {
+  message: 'Number must be positive',
+});
+```

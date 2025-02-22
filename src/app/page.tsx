@@ -1,35 +1,57 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 
-export default function Home() {
+import { UserButton } from '@/components/auth/user-button';
+import { Button } from '@/components/ui/button';
+import logo from '@/images/logo-icon.svg';
+import Image from 'next/image';
+import Link from 'next/link';
+
+export default function HomePage() {
   return (
-    <div className='min-h-screen bg-gray-50'>
-      <nav className='bg-white shadow-sm'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='flex justify-between h-16'>
-            <div className='flex items-center'>
-              <h1 className='text-xl font-semibold'>AI Manager</h1>
-            </div>
-            <div className='flex items-center'>
-              <SignedOut>
-                <SignInButton />
-              </SignedOut>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-            </div>
-          </div>
+    <div className='min-h-screen bg-[#1a1f36]'>
+      <header className='border-b border-slate-800 p-4'>
+        <div className='container mx-auto flex items-center justify-between'>
+          <Link
+            href='/'
+            className='flex items-center gap-2'
+          >
+            <Image
+              src={logo}
+              alt='logo'
+              width={30}
+              height={30}
+            />
+            <h2 className='text-lg font-semibold text-white'>AI Manager</h2>
+          </Link>
+          <UserButton />
         </div>
-      </nav>
-
-      <main className='max-w-7xl mx-auto py-6 sm:px-6 lg:px-8'>
-        <div className='px-4 py-6 sm:px-0'>
-          <div className='border-4 border-dashed border-gray-200 rounded-lg h-96 flex items-center justify-center'>
-            <p className='text-gray-500'>
-              Welcome to AI Manager! You are signed in.
-            </p>
-          </div>
+      </header>
+      <div className='container mx-auto px-4 py-24'>
+        <div className='flex flex-col items-center text-center'>
+          <h1 className='mb-6 text-5xl font-bold tracking-tight text-white sm:text-6xl'>
+            AI-Powered Standup Management
+          </h1>
+          <p className='mb-12 max-w-2xl text-lg text-slate-300'>
+            Streamline your daily standups with AI assistance. Get insights,
+            track progress, and keep your team aligned with our intelligent
+            standup management platform.
+          </p>
+          <SignedOut>
+            <SignInButton mode='modal'>
+              <Button className='bg-cyan-500 text-lg text-white hover:bg-cyan-600'>
+                Sign In
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <Link href='/dashboard'>
+              <Button className='bg-cyan-500 text-lg text-white hover:bg-cyan-600'>
+                Go to Dashboard
+              </Button>
+            </Link>
+          </SignedIn>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
