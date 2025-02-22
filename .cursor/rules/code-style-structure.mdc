@@ -1,0 +1,60 @@
+---
+description: Code Style and Structure
+globs: 
+---
+
+# Code Style and Structure
+
+- Write concise, technical TypeScript code with accurate examples.
+- Use functional and declarative programming patterns; avoid classes.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Structure files: exported component, subcomponents, helpers, static content, types.
+- Always use aliased imports whenever possible, even if the imported component is a neighbor.
+
+# Naming Conventions
+
+- Use lowercase with dashes for directories (e.g., components/auth-wizard).
+- Favor named exports for components.
+
+# Features Directory
+
+This directory contains feature-based modules. Each feature module encapsulates all related components, hooks, actions, and utilities.
+
+## Structure
+
+```
+features/
+  ├── queries/                # Query execution feature
+  │   ├── actions/            # Server actions
+  │   ├── api/                # API functions (i.e. db queries)
+  │   ├── components/         # React components
+  │   ├── hooks/              # React hooks
+  │   ├── types/              # Typescript types
+  │   ├── utils/              # Feature specific utilities
+  │   └── zod/                # Zod validations
+  └── [other-feature]/        # Other features follow the same pattern
+```
+
+- Each feature should be self-contained
+- Shared utilities should remain in src/lib
+- Common components should stay in src/components
+- Feature-specific types should be in the feature directory
+
+# TypeScript Usage
+
+- Use TypeScript for all code; prefer types over interfaces.
+- Use functional components with TypeScript interfaces.
+- When importing local files, use relative paths, preferring the @/ alias if applicable.
+
+# Syntax and Formatting
+
+- Use the "function" keyword for pure functions.
+- Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
+- Be sure to escape ' in non-quoted text
+
+# UI and Styling
+
+- Use Shadcn UI, Radix, and Tailwind for components and styling.
+- When adding tailwinds classes for height and width (ex: h-5 w-5), if both h and w are the same, use size-5 instead.
+- Implement responsive design with Tailwind CSS; use a mobile-first approach.
