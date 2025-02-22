@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "clerk": "ngrok http --url=caiman-firm-dassie.ngrok-free.app 3000",
     "dev": "next dev --turbopack",
     "env:dev": "vercel env pull .env.local",
     "env:prod": "vercel env pull .env.production.local --environment=production",
@@ -14,6 +15,7 @@
     "db:studio": "dotenv -e .env.local -- drizzle-kit studio"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.12.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "dotenv-cli": "^8.0.0",
@@ -21,7 +23,8 @@
     "next": "15.1.7",
     "pg": "^8.13.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "svix": "^1.59.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
