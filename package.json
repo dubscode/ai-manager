@@ -6,26 +6,35 @@
     "dev": "next dev --turbopack",
     "env:dev": "vercel env pull .env.local",
     "env:prod": "vercel env pull .env.production.local --environment=production",
-    "build": "next build",
+    "build": "drizzle-kit migrate &&next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:g": "dotenv -e .env.local -- drizzle-kit generate",
+    "db:m": "dotenv -e .env.local -- drizzle-kit migrate",
+    "db:studio": "dotenv -e .env.local -- drizzle-kit studio"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
+    "dotenv-cli": "^8.0.0",
+    "drizzle-orm": "^0.39.3",
     "next": "15.1.7",
+    "pg": "^8.13.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
+    "@types/pg": "^8.11.11",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.30.4",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.19.3",
     "typescript": "^5"
   }
 }
