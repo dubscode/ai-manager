@@ -1,42 +1,37 @@
+import { standups } from '@/db/schema';
 import { StandupCard } from '@/features/standups/components/standup-card';
+import { formatDistanceToNow } from 'date-fns';
+import { type InferSelectModel } from 'drizzle-orm';
 
-const RECENT_STANDUPS = [
-  {
-    date: 'Yesterday',
-    status: 'Completed' as const,
-    yesterdayWork: 'Completed API integration and documentation',
-    todayPlan: 'Start work on frontend components',
-    blockers: 'None reported',
-    sentiment: '😊',
-  },
-  {
-    date: '2 Days Ago',
-    status: 'Partial' as const,
-    yesterdayWork: 'Code review and bug fixes',
-    todayPlan: 'Continue with API development',
-    blockers: 'Waiting for DevOps support',
-    sentiment: '😐',
-    isBlockerAlert: true,
-  },
-  {
-    date: '3 Days Ago',
-    status: 'Completed' as const,
-    yesterdayWork: 'Initial project setup and planning',
-    todayPlan: 'Begin API development',
-    blockers: 'None reported',
-    sentiment: '😊',
-  },
-];
+type Standup = InferSelectModel<typeof standups>;
 
-export function RecentStandups() {
+interface RecentStandupsProps {
+  recentStandups: Standup[];
+}
+
+export function RecentStandups({ recentStandups }: RecentStandupsProps) {
   return (
     <section className='grid gap-4'>
       <h2 className='text-lg font-semibold text-white'>Recent Standups</h2>
       <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
-        {RECENT_STANDUPS.map((standup) => (
+        {recentStandups.map((standup) => (
           <StandupCard
-            key={standup.date}
-            {...standup}
+            key={standup.id}
+            date={formatDistanceToNow(new Date(standup.createdAt!), {
+              addSuffix: true,
+            })}
+            status={standup.status === 'completed' ? 'Completed' : 'Partial'}
+            sentiment={
+              standup.overallSentiment === 'positive'
+                ? '😊'
+                : standup.overallSentiment === 'negative'
+                ? '😞'
+                : '😐'
+            }
+            sentimentText={standup.overallSentiment || 'neutral'}
+            highlights={standup.transcriptHighlights || []}
+            blockers={[]}
+            actionItems={[]}
           />
         ))}
       </div>
