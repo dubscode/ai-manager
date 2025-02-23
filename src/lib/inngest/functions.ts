@@ -12,6 +12,7 @@ import { db } from '@/db';
 import { client as elevenLabs } from '@/lib/11labs';
 import { eq } from 'drizzle-orm';
 import { inngest } from './index';
+import { sendManagerEmail } from '@/lib/email';
 
 export const updateConversation = inngest.createFunction(
   { id: 'update-conversation' },
@@ -211,6 +212,172 @@ export const updateConversation = inngest.createFunction(
       actions: actionRecords,
     });
 
+    // Trigger manager notification if there are any blockers, if sentiment is negative, or if there's a notify_manager action
+    if (
+      blockerRecords.length > 0 ||
+      updatedStandup.overallSentiment === 'negative' ||
+      actionRecords.some((action) => action.actionType === 'notify_manager')
+    ) {
+      await step.sendEvent('manager/notify', {
+        name: 'manager/notify',
+        data: {
+          standupId: updatedStandup.id,
+          userId: updatedStandup.userId,
+        },
+      });
+    }
+
     return { updatedConversation, standupAnalysis };
+  }
+);
+
+export const notifyManager = inngest.createFunction(
+  { id: 'notify-manager' },
+  { event: 'manager/notify' },
+  async ({ event, step, logger }) => {
+    const { standupId, userId } = event.data as {
+      standupId: string;
+      userId: string;
+    };
+
+    logger.info('Notifying manager about standup', { standupId, userId });
+
+    // Get the standup data with user info using Drizzle query
+    const standup = await step.run('get-standup-data', async () => {
+      return db.query.standups.findFirst({
+        where: eq(standups.id, standupId),
+        with: {
+          user: true,
+          blockers: true,
+          actions: true,
+        },
+      });
+    });
+
+    if (!standup) {
+      logger.error('Standup not found', { standupId });
+      return { error: 'Standup not found' };
+    }
+
+    if (!standup.user.managerEmail) {
+      logger.error('Manager email not set for user', { userId });
+      return { error: 'Manager email not set' };
+    }
+
+    // Prepare email content
+    const emailContent = await step.run('prepare-email', async () => {
+      const highlights =
+        standup.transcriptHighlights?.join('\n• ') || 'No highlights available';
+      const blockersText =
+        standup.blockers.length > 0
+          ? standup.blockers.map((b) => `• ${b.blocker}`).join('\n')
+          : 'No blockers reported';
+      const actionsText =
+        standup.actions.length > 0
+          ? standup.actions
+              .map((a) => `• ${a.actionTitle}: ${a.actionSummary}`)
+              .join('\n')
+          : 'No actions required';
+
+      // Format date and time in Pacific Time
+      const standupDate = standup.createdAt
+        ? new Date(standup.createdAt)
+        : new Date();
+      const ptDate = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Los_Angeles',
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        timeZoneName: 'short',
+      }).format(standupDate);
+
+      const text = `
+        Standup Summary for ${standup.user.name}
+        Date: ${ptDate}
+
+        Overall Sentiment: ${standup.overallSentiment || 'Not available'}
+
+        Summary:
+        ${standup.summary || 'No summary available'}
+
+        Key Highlights:
+        • ${highlights}
+
+        Blockers:
+        ${blockersText}
+
+        Recommended Actions:
+        ${actionsText}
+
+        View full details in the AI Manager dashboard.
+      `.trim();
+
+      const html = `
+        <h2>Standup Summary for ${standup.user.name}</h2>
+        <p><strong>Date:</strong> ${ptDate}</p>
+
+        <p><strong>Overall Sentiment:</strong> ${
+          standup.overallSentiment || 'Not available'
+        }</p>
+
+        <h3>Summary:</h3>
+        <p>${standup.summary || 'No summary available'}</p>
+
+        <h3>Key Highlights:</h3>
+        <ul>
+          ${
+            standup.transcriptHighlights
+              ?.map((h) => `<li>${h}</li>`)
+              .join('\n  ') || '<li>No highlights available</li>'
+          }
+        </ul>
+
+        <h3>Blockers:</h3>
+        <ul>
+          ${
+            standup.blockers.length > 0
+              ? standup.blockers
+                  .map((b) => `<li>${b.blocker}</li>`)
+                  .join('\n  ')
+              : '<li>No blockers reported</li>'
+          }
+        </ul>
+
+        <h3>Recommended Actions:</h3>
+        <ul>
+          ${
+            standup.actions.length > 0
+              ? standup.actions
+                  .map(
+                    (a) =>
+                      `<li><strong>${a.actionTitle}:</strong> ${a.actionSummary}</li>`
+                  )
+                  .join('\n  ')
+              : '<li>No actions required</li>'
+          }
+        </ul>
+
+        <p><a href="https://aimgr.dev/dashboard">View full details in the AI Manager dashboard</a></p>
+      `.trim();
+
+      return { text, html };
+    });
+
+    // Send the email
+    const emailResult = await step.run('send-email', async () => {
+      return sendManagerEmail({
+        to: standup.user.managerEmail!,
+        subject: `Standup Summary for ${standup.user.name}`,
+        text: emailContent.text,
+        html: emailContent.html,
+      });
+    });
+
+    logger.info('Email sent to manager', { result: emailResult });
+
+    return { success: true, emailResult };
   }
 );

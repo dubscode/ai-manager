@@ -20,7 +20,13 @@ export const users = pgTable('users', {
   name: text('name').notNull(),
   role: text('role', { enum: ['developer', 'manager'] }).notNull(),
   createdAt: timestamp('created_at').defaultNow(),
+  managerEmail: text('manager_email'),
 });
+
+// Define users relations
+export const usersRelations = relations(users, ({ many }) => ({
+  standups: many(standups),
+}));
 
 // Standups table
 export const standups = pgTable('standups', {
@@ -45,6 +51,17 @@ export const standups = pgTable('standups', {
     .default([]),
   createdAt: timestamp('created_at').defaultNow(),
 });
+
+// Define standups relations
+export const standupsRelations = relations(standups, ({ one, many }) => ({
+  user: one(users, {
+    fields: [standups.userId],
+    references: [users.id],
+  }),
+  blockers: many(blockers),
+  actions: many(actions),
+  responses: many(responses),
+}));
 
 // Responses table
 export const responses = pgTable(
@@ -136,12 +153,6 @@ export const conversations = pgTable('conversations', {
 });
 
 // Define relations
-export const standupsRelations = relations(standups, ({ many }) => ({
-  blockers: many(blockers),
-  actions: many(actions),
-  responses: many(responses),
-}));
-
 export const blockersRelations = relations(blockers, ({ one }) => ({
   standup: one(standups, {
     fields: [blockers.standupId],

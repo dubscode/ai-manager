@@ -50,6 +50,13 @@
       "when": 1740341973933,
       "tag": "0006_outgoing_eternals",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1740346479409,
+      "tag": "0007_typical_corsair",
+      "breakpoints": true
     }
   ]
 }
