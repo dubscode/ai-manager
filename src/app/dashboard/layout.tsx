@@ -13,7 +13,7 @@ export default async function DashboardLayout({
 
   return (
     <SidebarProvider defaultOpen={defaultOpen}>
-      <div className='flex min-h-screen w-full bg-[#1a1f36]'>
+      <div className='flex min-h-screen w-full bg-background'>
         <AppSidebar />
         <div className='flex-1'>
           <DashboardHeader />

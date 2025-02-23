@@ -52,18 +52,18 @@ export function CallScreen() {
   };
 
   return (
-    <div className='flex min-h-screen flex-col bg-[#1a1f36] text-white'>
+    <div className='flex min-h-screen flex-col bg-background text-white'>
       <header className='border-b border-slate-800 p-4'>
         <h1 className='text-xl font-bold'>Daily Standup</h1>
       </header>
       <main className='flex flex-1 flex-col items-center justify-center p-6'>
-        <Card className='w-full max-w-2xl border-slate-800 bg-[#232a45]'>
+        <Card className='w-full max-w-2xl border-slate-800 bg-card'>
           <CardContent className='p-6'>
-            <div className='mb-6 rounded-lg border border-cyan-500 bg-[#2a3352] p-4 shadow-[0_0_10px_rgba(0,255,255,0.1)]'>
-              <p className='text-lg font-medium text-cyan-300'>{aiQuestion}</p>
+            <div className='mb-6 rounded-lg border border-primary bg-accent p-4 shadow-[0_0_10px_rgba(0,255,255,0.1)]'>
+              <p className='text-lg font-medium text-primary'>{aiQuestion}</p>
             </div>
-            <div className='mb-6 h-32 overflow-auto rounded-lg border border-slate-700 bg-[#1e2642] p-4'>
-              <p className='text-sm text-slate-300'>
+            <div className='mb-6 h-32 overflow-auto rounded-lg border border-slate-700 bg-secondary p-4'>
+              <p className='text-sm text-muted-foreground'>
                 {transcription || 'Your response will appear here...'}
               </p>
             </div>

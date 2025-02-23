@@ -1,9 +1,9 @@
-import { UserButton } from '@/components/auth/user-button';
 import { SidebarTrigger } from '@/components/ui/sidebar';
+import { UserButton } from '@/components/auth/user-button';
 
 export function DashboardHeader() {
   return (
-    <header className='border-b border-slate-800 bg-[#1a1f36] p-4'>
+    <header className='sticky top-0 z-50 border-b border-slate-800 bg-background p-4'>
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-2'>
           <SidebarTrigger />
