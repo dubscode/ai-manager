@@ -57,6 +57,13 @@
       "when": 1740346479409,
       "tag": "0007_typical_corsair",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1740352399412,
+      "tag": "0008_happy_smiling_tiger",
+      "breakpoints": true
     }
   ]
 }
