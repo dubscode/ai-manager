@@ -1,0 +1,197 @@
+{
+  "standupAnalysis": {
+    "actions": [],
+    "blockers": [
+      {
+        "blocker": "Background noise",
+        "linearIssue": null,
+        "linearProject": null,
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        }
+      }
+    ],
+    "engagementLevel": "Low Engagement",
+    "overallSentiment": "neutral",
+    "responses": [
+      {
+        "question": "What did you work on yesterday?",
+        "response": "I've been doing a lot of work with the dashboard for the revenue managers.",
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        },
+        "tone": "hesitant"
+      },
+      {
+        "question": "What are you working on today?",
+        "response": "I'm trying to set up background jobs.",
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        },
+        "tone": "confident"
+      },
+      {
+        "question": "Do you have any blockers?",
+        "response": "Just background noise, really.",
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        },
+        "tone": "hesitant"
+      }
+    ],
+    "status": "success",
+    "summary": "This conversation summarizes a brief standup meeting between an agent and a user. The agent initiated the meeting to check on the user's progress and asked about their recent work. Initially, the user was unsure about their previous day's tasks but recalled working on a dashboard for revenue managers. \n\nThe user's current focus is on setting up background jobs for the dashboard project. When asked about potential challenges, the user mentioned only background noise as a distraction. \n\nThe agent offered support in managing distractions and inquired if the user needed any additional assistance. The user declined, expressing satisfaction with the conversation. The meeting concluded on a positive note, with the agent encouraging the user to reach out if needed in the future.\n\nOverall, the conversation was brief and professional, focusing on project updates and potential challenges. The agent demonstrated attentiveness and willingness to provide support throughout the interaction.",
+    "transcriptHighlights": [
+      "The user was unsure about their previous day's tasks but recalled working on a dashboard for revenue managers.",
+      "The user's current focus is on setting up background jobs for the dashboard project.",
+      "The user mentioned background noise as a distraction.",
+      "The agent offered support in managing distractions.",
+      "The user expressed satisfaction with the conversation."
+    ]
+  },
+  "updatedConversation": {
+    "agentId": "C6KLHcn1GvZLLNoOtjQ1",
+    "analysis": {
+      "callSuccessful": "success",
+      "dataResults": {
+        "blockers": {
+          "data_collection_id": "blockers",
+          "json_schema": {
+            "description": "Extract any blockers or challenges mentioned by the developer.  \nIf no blockers are stated, return `\"None\"` or `\"No blockers\"`. ",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The developer mentioned 'Just background noise, really' when asked about blockers or challenges they're facing with setting up background jobs. While this isn't a technical blocker, it is a challenge that could potentially impact their work. The assistant acknowledged this by saying 'I understand how distracting that can be.' Therefore, background noise is extracted as the blocker or challenge mentioned by the developer.",
+          "value": "Background noise"
+        },
+        "engagement_level": {
+          "data_collection_id": "engagement_level",
+          "json_schema": {
+            "description": "Assess the developer's engagement level based on their responses.  \nClassify as one of the following:  \n- **\"Highly Engaged\"** – Provides detailed responses with enthusiasm.  \n- **\"Moderately Engaged\"** – Answers all questions but with minimal detail.  \n- **\"Low Engagement\"** – Provides vague or minimal responses.  \n- **\"Unclear\"** – Unable to determine engagement level from the transcript.",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The developer's responses throughout the conversation indicate a low level of engagement. This assessment is based on the following observations: 1. When asked about what they worked on, the developer initially responded with 'I'm not really sure what I worked on yesterday,' showing a lack of recall or preparation for the standup. 2. When prompted further, they provided only a vague description of their work: 'I've been doing a lot of work with the dashboard for the revenue managers,' without offering any specific details. 3. When asked about their plans for the day, the developer gave a brief, non-specific answer: 'I'm trying to set up background jobs,' without elaborating on the process or any particular goals. 4. When asked about potential blockers or challenges, the developer's response was dismissive and vague: 'Just background noise, really,' not engaging with the question in a meaningful way. 5. The developer ended the conversation abruptly with 'Oh no, I'm good. Thank you very much,' when asked if there was anything else they needed assistance with, showing little interest in further discussion or collaboration. These responses consistently demonstrate minimal detail, vague answers, and a lack of enthusiasm, which aligns with the 'Low Engagement' classification as defined in the schema description.",
+          "value": "Low Engagement"
+        },
+        "follow_up_actions": {
+          "data_collection_id": "follow_up_actions",
+          "json_schema": {
+            "description": "Identify any follow-up actions mentioned in the standup.  \nCommon actions include:  \n- **\"Notify Manager\"** – If a blocker or issue needs escalation.  \n- **\"Schedule Follow-up\"** – If further discussion is needed.  \n- **\"Re-run Standup\"** – If responses were incomplete.  \n\nIf no follow-up action is required, return `\"None\"`. ",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "Based on the conversation transcript, there are no specific follow-up actions mentioned or required. The user was able to provide information about their work on the dashboard for revenue managers and their plan to set up background jobs. The only challenge mentioned was background noise, which the assistant acknowledged but didn't require any specific follow-up action. The conversation ended with the user confirming they were good and thanking the assistant. The assistant then ended the call as the user was satisfied and had no further questions. Therefore, no follow-up actions such as notifying a manager, scheduling a follow-up, or re-running the standup are necessary.",
+          "value": "None"
+        },
+        "sentiment": {
+          "data_collection_id": "sentiment",
+          "json_schema": {
+            "description": "Analyze and extract the overall sentiment of the developer’s responses.  \nClassify as: `\"Positive\"`, `\"Neutral\"`, or `\"Negative\"`. ",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The overall sentiment of the developer's responses in this conversation appears to be neutral. The developer's responses are neither overtly positive nor negative. They provide straightforward information about their work without expressing strong emotions or opinions. For example, when asked about their work, they simply state 'I've been doing a lot of work with the dashboard for the revenue managers' and 'I'm trying to set up background jobs.' When faced with challenges, they mention 'Just background noise, really' without expressing frustration. At the end, they politely say 'Oh no, I'm good. Thank you very much,' which is courteous but not particularly enthusiastic. The lack of strong positive or negative language throughout the conversation supports a neutral sentiment classification.",
+          "value": "Neutral"
+        },
+        "standup_responses": {
+          "data_collection_id": "standup_responses",
+          "json_schema": {
+            "description": "Extract the developer’s responses to the three standup questions:  \n1. What did you work on yesterday?  \n2. What are you working on today?  \n3. Do you have any blockers?  \n\nEnsure responses are mapped to the correct question.",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The conversation contains the developer's responses to the three standup questions, although they are not explicitly numbered in the transcript. The responses can be extracted as follows:",
+          "value": "1. What did you work on yesterday?: I've been doing a lot of work with the dashboard for the revenue managers.\n2. What are you working on today?: I'm trying to set up background jobs.\n3. Do you have any blockers?: Just background noise, really."
+        }
+      },
+      "evaluationResults": {
+        "verify_standup_completion": {
+          "criteria_id": "verify_standup_completion",
+          "rationale": "The conversation meets all success criteria. 1) All three questions were answered: past work (dashboard for revenue managers), current focus (setting up background jobs), and blockers (background noise). 2) Responses were clear and relevant. 3) The blocker (background noise) was acknowledged. 4) No unresolved issues were left hanging, as the user confirmed they were good and thanked the assistant.",
+          "result": "success"
+        }
+      },
+      "transcriptSummary": "This conversation summarizes a brief standup meeting between an agent and a user. The agent initiated the meeting to check on the user's progress and asked about their recent work. Initially, the user was unsure about their previous day's tasks but recalled working on a dashboard for revenue managers. \n\nThe user's current focus is on setting up background jobs for the dashboard project. When asked about potential challenges, the user mentioned only background noise as a distraction. \n\nThe agent offered support in managing distractions and inquired if the user needed any additional assistance. The user declined, expressing satisfaction with the conversation. The meeting concluded on a positive note, with the agent encouraging the user to reach out if needed in the future.\n\nOverall, the conversation was brief and professional, focusing on project updates and potential challenges. The agent demonstrated attentiveness and willingness to provide support throughout the interaction."
+    },
+    "createdAt": "2025-02-23T07:23:07.979Z",
+    "id": "JLlrB1NtpSb25Jj7v5PH",
+    "status": "done",
+    "transcript": [
+      {
+        "message": "Good morning! Let’s get started with today’s standup. I’ll ask you a few quick questions to check in on your progress. First up—what did you work on...",
+        "role": "agent",
+        "timeInCallSecs": 0
+      },
+      {
+        "message": "I'm not really sure what I worked on yesterday.",
+        "role": "user",
+        "timeInCallSecs": 6
+      },
+      {
+        "message": "That's okay! It happens sometimes. Is there anything you remember working on recently or any tasks you've been focusing on lately? If you need help recalling, maybe...",
+        "role": "agent",
+        "timeInCallSecs": 13
+      },
+      {
+        "message": "I've been doing a lot of work with the dashboard for the revenue managers.",
+        "role": "user",
+        "timeInCallSecs": 21
+      },
+      {
+        "message": "Great! It sounds like you're working on an important project. What are you planning to focus on today? Is there anything specific you aim to accomplish with the dashboard?",
+        "role": "agent",
+        "timeInCallSecs": 28
+      },
+      {
+        "message": "I'm trying to set up background jobs.",
+        "role": "user",
+        "timeInCallSecs": 37
+      },
+      {
+        "message": "That sounds like a crucial task. Are there any blockers or challenges you're facing with setting up these background jobs that I should note?",
+        "role": "agent",
+        "timeInCallSecs": 42
+      },
+      {
+        "message": "Just background noise, really.",
+        "role": "user",
+        "timeInCallSecs": 50
+      },
+      {
+        "message": "I understand how distracting that can be. If there's anything I can do to help you manage or minimize those distractions, please let me know. Is there anything else you'd like to discuss or need assistance with today?",
+        "role": "agent",
+        "timeInCallSecs": 53
+      },
+      {
+        "message": "Oh no, I'm good. Thank you very much.",
+        "role": "user",
+        "timeInCallSecs": 65
+      },
+      {
+        "message": "You're welcome! If you need anything else, feel free to reach out. Have a great day!",
+        "role": "agent",
+        "timeInCallSecs": 69
+      },
+      {
+        "message": "",
+        "role": "agent",
+        "timeInCallSecs": 69
+      },
+      {
+        "message": "",
+        "role": "agent",
+        "timeInCallSecs": 69
+      }
+    ],
+    "userId": "user_2tPJssNuR9ZQOeXweZ9ZWIwxPx7"
+  }
+}

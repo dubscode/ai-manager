@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@11labs/react": "^0.0.7",
+    "@ai-sdk/azure": "^1.1.13",
+    "@ai-sdk/mistral": "^1.1.12",
     "@clerk/nextjs": "^6.12.0",
     "@posthog/ai": "^3.2.1",
     "@radix-ui/react-dialog": "^1.1.6",
@@ -41,7 +43,8 @@
     "recharts": "^2.15.1",
     "svix": "^1.59.1",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

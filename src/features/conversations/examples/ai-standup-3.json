@@ -1,0 +1,202 @@
+{
+  "standupAnalysis": {
+    "actions": [
+      {
+        "actionType": "notify_manager",
+        "triggeredBy": "AI"
+      }
+    ],
+    "blockers": [
+      {
+        "blocker": "Short on time",
+        "linearIssue": null,
+        "linearProject": null,
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        }
+      }
+    ],
+    "engagementLevel": "Moderately Engaged",
+    "overallSentiment": "neutral",
+    "responses": [
+      {
+        "question": "What did you work on yesterday?",
+        "response": "I worked on dashboard feature requests.",
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        },
+        "tone": "confident"
+      },
+      {
+        "question": "What are you working on today?",
+        "response": "Today I'm working on Hack 120 and Hack 122.",
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        },
+        "tone": "confident"
+      },
+      {
+        "question": "Do you have any blockers?",
+        "response": "I don't think so, just short on time.",
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        },
+        "tone": "confident"
+      }
+    ],
+    "status": "success",
+    "summary": "The conversation summarizes a daily standup meeting between an agent and a team member. The team member reported working on dashboard feature requests the previous day and planned to focus on Hack 120 and Hack 122 for the current day. When asked about challenges, the team member mentioned being short on time. The agent offered to notify the manager about this time constraint, which the team member accepted. The standup concluded with the agent confirming they would inform the manager and offering further assistance if needed. The overall tone was professional and efficient, with the agent demonstrating attentiveness to the team member's needs and proactively offering support for the reported time pressure.",
+    "transcriptHighlights": [
+      "The team member reported working on dashboard feature requests the previous day.",
+      "Planned to focus on Hack 120 and Hack 122 for the current day.",
+      "Mentioned being short on time as a challenge.",
+      "Agent offered to notify the manager about the time constraint.",
+      "Standup concluded with the agent confirming they would inform the manager."
+    ]
+  },
+  "updatedConversation": {
+    "agentId": "C6KLHcn1GvZLLNoOtjQ1",
+    "analysis": {
+      "callSuccessful": "success",
+      "dataResults": {
+        "blockers": {
+          "data_collection_id": "blockers",
+          "json_schema": {
+            "description": "Extract any blockers or challenges mentioned by the developer.  \nIf no blockers are stated, return `\"None\"` or `\"No blockers\"`. ",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The developer explicitly mentions a challenge in the conversation. When asked about blockers or challenges, the user responds with 'I don't think so, just short on time.' This indicates that while there are no specific blockers, being short on time is a challenge the developer is facing. The assistant acknowledges this as a challenge by saying 'Being short on time can be quite a challenge.' Therefore, the extracted challenge is 'Short on time'.",
+          "value": "Short on time"
+        },
+        "engagement_level": {
+          "data_collection_id": "engagement_level",
+          "json_schema": {
+            "description": "Assess the developer's engagement level based on their responses.  \nClassify as one of the following:  \n- **\"Highly Engaged\"** – Provides detailed responses with enthusiasm.  \n- **\"Moderately Engaged\"** – Answers all questions but with minimal detail.  \n- **\"Low Engagement\"** – Provides vague or minimal responses.  \n- **\"Unclear\"** – Unable to determine engagement level from the transcript.",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "Based on the transcript, the developer's engagement level can be classified as 'Moderately Engaged'. The developer answers all questions but provides minimal detail in their responses. For example, when asked about yesterday's work, they simply state 'I worked on dashboard feature requests' without elaborating. Similarly, for today's tasks, they briefly mention 'Today I'm working on Hack 120 and Hack 122' without additional context. When asked about blockers, they respond with a short 'I don't think so, just short on time'. The developer's responses are consistent and to the point, but lack enthusiasm or detailed explanations, which aligns with the 'Moderately Engaged' classification.",
+          "value": "Moderately Engaged"
+        },
+        "follow_up_actions": {
+          "data_collection_id": "follow_up_actions",
+          "json_schema": {
+            "description": "Identify any follow-up actions mentioned in the standup.  \nCommon actions include:  \n- **\"Notify Manager\"** – If a blocker or issue needs escalation.  \n- **\"Schedule Follow-up\"** – If further discussion is needed.  \n- **\"Re-run Standup\"** – If responses were incomplete.  \n\nIf no follow-up action is required, return `\"None\"`. ",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The conversation clearly indicates a follow-up action of 'Notify Manager'. This is evident from the user's response 'Yeah, please notify my manager' when the assistant asks if they should notify the manager about the time constraints. The assistant then confirms this action by stating 'I will make sure to notify your manager about the time constraints you're facing.' Therefore, the appropriate follow-up action extracted from this standup conversation is 'Notify Manager'.",
+          "value": "Notify Manager"
+        },
+        "sentiment": {
+          "data_collection_id": "sentiment",
+          "json_schema": {
+            "description": "Analyze and extract the overall sentiment of the developer’s responses.  \nClassify as: `\"Positive\"`, `\"Neutral\"`, or `\"Negative\"`. ",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The developer's responses in this conversation are generally neutral in tone. They provide straightforward answers to the agent's questions without expressing strong positive or negative emotions. The developer mentions working on dashboard feature requests, Hack 120, and Hack 122, and indicates being short on time. While there's a slight hint of stress due to time constraints, the overall sentiment doesn't lean strongly towards positive or negative. The developer's final response of 'No, that's it. Thank you.' is polite but neutral. Therefore, the overall sentiment is classified as 'Neutral'.",
+          "value": "Neutral"
+        },
+        "standup_responses": {
+          "data_collection_id": "standup_responses",
+          "json_schema": {
+            "description": "Extract the developer’s responses to the three standup questions:  \n1. What did you work on yesterday?  \n2. What are you working on today?  \n3. Do you have any blockers?  \n\nEnsure responses are mapped to the correct question.",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The conversation contains clear responses to all three standup questions. The user directly answered each question asked by the agent, allowing for easy extraction of the relevant information. The responses are mapped to the correct questions as follows:\n1. 'I worked on dashboard feature requests.' in response to 'what did you work on yesterday?'\n2. 'Today I'm working on Hack 120 and Hack 122.' in response to 'What are you working on today?'\n3. 'I don't think so, just short on time.' in response to 'Are there any blockers or challenges you're facing that I should note?'\nThese responses provide a concise summary of the developer's standup update.",
+          "value": "1. What did you work on yesterday?\nI worked on dashboard feature requests.\n\n2. What are you working on today?\nToday I'm working on Hack 120 and Hack 122.\n\n3. Do you have any blockers?\nI don't think so, just short on time."
+        }
+      },
+      "evaluationResults": {
+        "verify_standup_completion": {
+          "criteria_id": "verify_standup_completion",
+          "rationale": "The conversation meets all success criteria. All three questions were answered: yesterday's work (dashboard feature requests), today's work (Hack 120 and Hack 122), and blockers (short on time). Responses were clear and relevant. The blocker was acknowledged, and the assistant offered to notify the manager. No unresolved issues were left hanging, as the assistant confirmed they would notify the manager about the time constraints.",
+          "result": "success"
+        }
+      },
+      "transcriptSummary": "The conversation summarizes a daily standup meeting between an agent and a team member. The team member reported working on dashboard feature requests the previous day and planned to focus on Hack 120 and Hack 122 for the current day. When asked about challenges, the team member mentioned being short on time. The agent offered to notify the manager about this time constraint, which the team member accepted. The standup concluded with the agent confirming they would inform the manager and offering further assistance if needed. The overall tone was professional and efficient, with the agent demonstrating attentiveness to the team member's needs and proactively offering support for the reported time pressure."
+    },
+    "createdAt": "2025-02-23T06:33:49.641Z",
+    "id": "YcTQjg6GPWEViW1UO5dy",
+    "status": "done",
+    "transcript": [
+      {
+        "message": "Good morning! Let’s get started with today’s standup. I’ll ask you a few quick questions to check in on your progress. First up—what did you work on yesterday?",
+        "role": "agent",
+        "timeInCallSecs": 0
+      },
+      {
+        "message": "I worked on dashboard feature requests.",
+        "role": "user",
+        "timeInCallSecs": 9
+      },
+      {
+        "message": "Got it! That sounds like great progress. What are you working on today?",
+        "role": "agent",
+        "timeInCallSecs": 15
+      },
+      {
+        "message": "Today I'm working on Hack 120 and Hack 122.",
+        "role": "user",
+        "timeInCallSecs": 19
+      },
+      {
+        "message": "Great to hear you're tackling those tasks. Are there any blockers or challenges you’re facing that I should note?",
+        "role": "agent",
+        "timeInCallSecs": 26
+      },
+      {
+        "message": "I don't think so, just short on time.",
+        "role": "user",
+        "timeInCallSecs": 33
+      },
+      {
+        "message": "Thank you for the update. Being short on time can be quite a challenge. Would you like me to notify your manager about this, or is there anything else I can do to assist you?",
+        "role": "agent",
+        "timeInCallSecs": 36
+      },
+      {
+        "message": "Yeah, please notify my manager.",
+        "role": "user",
+        "timeInCallSecs": 47
+      },
+      {
+        "message": "I will make sure to notify your manager about the time constraints you're facing. Is there anything else I can help you with?",
+        "role": "agent",
+        "timeInCallSecs": 51
+      },
+      {
+        "message": "No, that's it. Thank you.",
+        "role": "user",
+        "timeInCallSecs": 58
+      },
+      {
+        "message": "You're welcome! If you need further assistance, feel free to reach out. Have a great day!",
+        "role": "agent",
+        "timeInCallSecs": 62
+      },
+      {
+        "message": "",
+        "role": "agent",
+        "timeInCallSecs": 62
+      },
+      {
+        "message": "",
+        "role": "agent",
+        "timeInCallSecs": 62
+      }
+    ],
+    "userId": "user_2tPJssNuR9ZQOeXweZ9ZWIwxPx7"
+  }
+}

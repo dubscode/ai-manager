@@ -36,6 +36,20 @@
       "when": 1740291850872,
       "tag": "0004_rainy_colleen_wing",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1740341619373,
+      "tag": "0005_glorious_wonder_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1740341973933,
+      "tag": "0006_outgoing_eternals",
+      "breakpoints": true
     }
   ]
 }

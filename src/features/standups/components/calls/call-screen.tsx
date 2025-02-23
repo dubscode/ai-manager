@@ -4,11 +4,11 @@ import { Card, CardContent } from '@/components/ui/card';
 
 import { Button } from '@/components/ui/button';
 import { CallButton } from './call-button';
-import { ConversationMessage } from '../types';
+import { ConversationMessage } from '@/features/standups/types';
 import { Header } from './header';
 import { TestTube } from 'lucide-react';
 import { TranscriptionDisplay } from './transcription-display';
-import { useStandupConversation } from '../hooks/use-standup-conversation';
+import { useStandupConversation } from '@/features/standups/hooks/use-standup-conversation';
 import { useState } from 'react';
 
 const TEST_MESSAGES: ConversationMessage[] = [
