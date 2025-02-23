@@ -16,6 +16,7 @@
     "db:studio": "dotenv -e .env.local -- drizzle-kit studio"
   },
   "dependencies": {
+    "@11labs/react": "^0.0.7",
     "@clerk/nextjs": "^6.12.0",
     "@posthog/ai": "^3.2.1",
     "@radix-ui/react-dialog": "^1.1.6",

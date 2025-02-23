@@ -1,109 +1,105 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Mic, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { CallButton } from './call-button';
+import { ConversationMessage } from '../types';
+import { Header } from './header';
+import { TestTube } from 'lucide-react';
+import { TranscriptionDisplay } from './transcription-display';
+import { useStandupConversation } from '../hooks/use-standup-conversation';
+import { useState } from 'react';
+
+const TEST_MESSAGES: ConversationMessage[] = [
+  { source: 'ai', message: 'Good morning! What did you work on yesterday?' },
+  {
+    source: 'user',
+    message:
+      'Yesterday I worked on the new authentication system. I implemented OAuth with Google and added some unit tests.',
+  },
+  {
+    source: 'ai',
+    message: 'That sounds productive! Any challenges you encountered?',
+  },
+  {
+    source: 'user',
+    message:
+      'Yes, I had some issues with token refresh logic but managed to solve it by implementing a better error handling system.',
+  },
+  {
+    source: 'ai',
+    message: 'Great solution! What are you planning to work on today?',
+  },
+  {
+    source: 'user',
+    message:
+      "Today I'll be focusing on implementing the user profile page and adding the ability to update user settings.",
+  },
+  {
+    source: 'ai',
+    message: 'Sounds good! Any blockers or things you need help with?',
+  },
+  {
+    source: 'user',
+    message:
+      'Not at the moment, but I might need a design review for the profile page layout once I have the initial version ready.',
+  },
+  {
+    source: 'ai',
+    message:
+      "Perfect, I'll make sure to schedule that. Is there anything else you'd like to discuss?",
+  },
+  { source: 'user', message: 'No, that covers everything for now. Thanks!' },
+];
 
 export function CallScreen() {
-  const [isListening, setIsListening] = useState(false);
-  const [currentStep] = useState(1);
-  const [transcription, setTranscription] = useState('');
-  const totalSteps = 3;
+  const {
+    transcription,
+    isRecording,
+    isSpeaking,
+    startRecording,
+    stopRecording,
+  } = useStandupConversation();
+  const [useTestData, setUseTestData] = useState(false);
 
-  // Simulated AI question (in a real app, this would come from an AI service)
-  const aiQuestion = 'Good morning! What did you work on yesterday?';
-
-  useEffect(() => {
-    // Simulated transcription (in a real app, this would use the Web Speech API)
-    let interval: NodeJS.Timeout;
-    if (isListening) {
-      interval = setInterval(() => {
-        setTranscription((prev) => `${prev} ${generateRandomWord()}`);
-      }, 500);
+  const handleToggleRecording = () => {
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
     }
-    return () => clearInterval(interval);
-  }, [isListening]);
-
-  const toggleListening = () => {
-    setIsListening(!isListening);
   };
 
-  const endStandup = () => {
-    // Handle ending the standup early
-    console.log('Standup ended early');
-  };
-
-  const generateRandomWord = () => {
-    const words = [
-      'worked',
-      'on',
-      'the',
-      'project',
-      'implemented',
-      'features',
-      'fixed',
-      'bugs',
-      'reviewed',
-      'code',
-    ];
-    return words[Math.floor(Math.random() * words.length)];
-  };
+  const displayedTranscription = useTestData ? TEST_MESSAGES : transcription;
 
   return (
-    <div className='flex min-h-screen flex-col bg-background text-white'>
-      <header className='border-b border-slate-800 p-4'>
-        <h1 className='text-xl font-bold'>Daily Standup</h1>
-      </header>
-      <main className='flex flex-1 flex-col items-center justify-center p-6'>
-        <Card className='w-full max-w-2xl border-slate-800 bg-card'>
-          <CardContent className='p-6'>
-            <div className='mb-6 rounded-lg border border-primary bg-accent p-4 shadow-[0_0_10px_rgba(0,255,255,0.1)]'>
-              <p className='text-lg font-medium text-primary'>{aiQuestion}</p>
-            </div>
-            <div className='mb-6 h-32 overflow-auto rounded-lg border border-slate-700 bg-secondary p-4'>
-              <p className='text-sm text-muted-foreground'>
-                {transcription || 'Your response will appear here...'}
-              </p>
-            </div>
-            <div className='mb-6 flex justify-center'>
+    <div className='flex h-screen flex-col overflow-hidden bg-background text-white'>
+      <Header />
+      <main className='flex-1 p-4'>
+        <Card className='h-full w-full border-slate-800 bg-card'>
+          <CardContent className='flex h-full flex-col gap-4 p-6'>
+            <div className='flex gap-2'>
+              <CallButton
+                isRecording={isRecording}
+                isSpeaking={isSpeaking}
+                onClick={handleToggleRecording}
+              />
               <Button
-                className={`h-16 w-16 rounded-full ${
-                  isListening ? 'animate-pulse bg-red-500' : 'bg-cyan-500'
-                } text-white hover:bg-cyan-600`}
-                onClick={toggleListening}
+                variant='ghost'
+                size='icon'
+                className='shrink-0'
+                onClick={() => setUseTestData(!useTestData)}
+                title={
+                  useTestData ? 'Show real messages' : 'Show test messages'
+                }
               >
-                <Mic
-                  className={`h-8 w-8 ${isListening ? 'animate-bounce' : ''}`}
-                />
-                <span className='sr-only'>
-                  {isListening ? 'Stop' : 'Start'} recording
-                </span>
+                <TestTube className='h-5 w-5' />
               </Button>
             </div>
-            <div className='mb-6'>
-              <div className='mb-2 flex justify-between text-sm text-slate-400'>
-                <span>Progress</span>
-                <span>
-                  Step {currentStep} of {totalSteps}
-                </span>
-              </div>
-              <div className='h-2 rounded-full bg-slate-700'>
-                <div
-                  className='h-full rounded-full bg-cyan-500 transition-all duration-500 ease-in-out'
-                  style={{ width: `${(currentStep / totalSteps) * 100}%` }}
-                />
-              </div>
+            <div className='flex-1 min-h-[100px] overflow-hidden'>
+              <TranscriptionDisplay transcription={displayedTranscription} />
             </div>
-            <Button
-              variant='outline'
-              className='w-full border-red-500 text-red-500 hover:bg-red-500 hover:text-white'
-              onClick={endStandup}
-            >
-              <X className='mr-2 h-4 w-4' />
-              End Standup Early
-            </Button>
           </CardContent>
         </Card>
       </main>
