@@ -1,14 +1,14 @@
 import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 
-import { UserButton } from '@/components/auth/user-button';
 import { Button } from '@/components/ui/button';
-import logo from '@/images/logo-icon.svg';
 import Image from 'next/image';
 import Link from 'next/link';
+import { UserButton } from '@/components/auth/user-button';
+import logo from '@/images/logo-icon.svg';
 
 export default function HomePage() {
   return (
-    <div className='min-h-screen bg-[#1a1f36]'>
+    <div className='min-h-screen bg-background'>
       <header className='border-b border-slate-800 p-4'>
         <div className='container mx-auto flex items-center justify-between'>
           <Link
