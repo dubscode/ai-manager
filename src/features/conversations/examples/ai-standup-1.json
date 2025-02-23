@@ -1,0 +1,149 @@
+{
+  "standupAnalysis": {
+    "actions": [
+      {
+        "actionType": "re_run_standup",
+        "triggeredBy": "AI"
+      }
+    ],
+    "blockers": [],
+    "engagementLevel": "Low Engagement",
+    "overallSentiment": "neutral",
+    "responses": [
+      {
+        "question": "What did you work on yesterday?",
+        "response": "Taking over the world.",
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        },
+        "tone": "confident"
+      },
+      {
+        "question": "What are you working on today?",
+        "response": "Figuring out what time to go to bed.",
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        },
+        "tone": "confident"
+      },
+      {
+        "question": "Do you have any blockers?",
+        "response": "No response provided.",
+        "sentiment": {
+          "confidenceScore": "80",
+          "emotion": "neutral",
+          "sentimentScore": "50"
+        },
+        "tone": "hesitant"
+      }
+    ],
+    "status": "failure",
+    "summary": "This brief conversation is a standup meeting between an agent and a user, with a lighthearted tone. The agent initiates the meeting with standard questions about work progress. The user playfully mentions \"taking over the world\" as yesterday's task, highlighting a mismatch in time zones. For today's plan, the user focuses on determining an appropriate bedtime. The agent adapts to the user's responses, maintaining a friendly demeanor while attempting to follow the standup format. The conversation ends abruptly mid-sentence, with the agent beginning to inquire about potential blockers.",
+    "transcriptHighlights": [
+      "The user playfully mentions 'taking over the world' as yesterday's task.",
+      "The user focuses on determining an appropriate bedtime for today's plan.",
+      "The conversation ends abruptly mid-sentence, with the agent beginning to inquire about potential blockers."
+    ]
+  },
+  "updatedConversation": {
+    "agentId": "C6KLHcn1GvZLLNoOtjQ1",
+    "analysis": {
+      "callSuccessful": "failure",
+      "dataResults": {
+        "blockers": {
+          "data_collection_id": "blockers",
+          "json_schema": {
+            "description": "Extract any blockers or challenges mentioned by the developer.  \nIf no blockers are stated, return `\"None\"` or `\"No blockers\"`. ",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The conversation does not mention any specific blockers or challenges faced by the developer. The user's responses are playful and don't indicate any work-related issues. When the assistant begins to ask about blockers, the transcript cuts off before the user can respond. Therefore, based on the available information, there are no stated blockers, so the value 'None' is appropriate.",
+          "value": "None"
+        },
+        "engagement_level": {
+          "data_collection_id": "engagement_level",
+          "json_schema": {
+            "description": "Assess the developer's engagement level based on their responses.  \nClassify as one of the following:  \n- **\"Highly Engaged\"** – Provides detailed responses with enthusiasm.  \n- **\"Moderately Engaged\"** – Answers all questions but with minimal detail.  \n- **\"Low Engagement\"** – Provides vague or minimal responses.  \n- **\"Unclear\"** – Unable to determine engagement level from the transcript.",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The user's responses indicate a low level of engagement in the standup meeting. Their answers are vague, minimal, and don't provide any specific details about actual work tasks. The user's first response about 'taking over the world' is clearly not a serious answer, and their second response about figuring out when to go to bed is not related to work tasks. The user also points out the time difference, suggesting they might not be fully present or invested in the meeting. These factors all point to a 'Low Engagement' classification.",
+          "value": "Low Engagement"
+        },
+        "follow_up_actions": {
+          "data_collection_id": "follow_up_actions",
+          "json_schema": {
+            "description": "Identify any follow-up actions mentioned in the standup.  \nCommon actions include:  \n- **\"Notify Manager\"** – If a blocker or issue needs escalation.  \n- **\"Schedule Follow-up\"** – If further discussion is needed.  \n- **\"Re-run Standup\"** – If responses were incomplete.  \n\nIf no follow-up action is required, return `\"None\"`. ",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "Based on the conversation, it appears that the standup is not being conducted at an appropriate time or with serious responses. The user mentions it's nighttime for them and gives non-work related answers about 'taking over the world' and 'figuring out when to go to bed'. These responses suggest that the standup should be re-run at a more suitable time when the user can provide meaningful updates about their work. Therefore, the appropriate follow-up action is to 'Re-run Standup' to ensure proper participation and valuable information exchange.",
+          "value": "Re-run Standup"
+        },
+        "sentiment": {
+          "data_collection_id": "sentiment",
+          "json_schema": {
+            "description": "Analyze and extract the overall sentiment of the developer’s responses.  \nClassify as: `\"Positive\"`, `\"Neutral\"`, or `\"Negative\"`. ",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The developer's responses in this conversation are neither overtly positive nor negative, indicating a neutral sentiment overall. The developer's tone is casual and slightly playful (e.g., 'taking over the world'), but doesn't express strong emotions or opinions about their work. They respond to the agent's questions without enthusiasm or frustration, simply stating their activities and plans. The mismatch in time of day ('Good morning' vs. 'it's nighttime for me') and the focus on personal matters like bedtime rather than work tasks suggest a neutral, somewhat detached attitude towards the standup process.",
+          "value": "Neutral"
+        },
+        "standup_responses": {
+          "data_collection_id": "standup_responses",
+          "json_schema": {
+            "description": "Extract the developer’s responses to the three standup questions:  \n1. What did you work on yesterday?  \n2. What are you working on today?  \n3. Do you have any blockers?  \n\nEnsure responses are mapped to the correct question.",
+            "dynamic_variable": "",
+            "type": "string"
+          },
+          "rationale": "The conversation contains responses to the three standup questions, although they are not typical work-related answers. The user's responses can be mapped to the three questions as follows:\n\n1. What did you work on yesterday? - The user mentioned 'taking over the world'.\n2. What are you working on today? - The user said they're figuring out what time to go to bed.\n3. Do you have any blockers? - The user didn't provide a response to this question as the transcript ends before they could answer.",
+          "value": "1. What did you work on yesterday? - Taking over the world.\n2. What are you working on today? - Figuring out what time to go to bed.\n3. Do you have any blockers? - No response provided."
+        }
+      },
+      "evaluationResults": {
+        "verify_standup_completion": {
+          "criteria_id": "verify_standup_completion",
+          "rationale": "The conversation fails to meet the success criteria. While two of the three required questions were asked, the responses were not clear or relevant to a professional context. The third question about blockers was cut off, and no meaningful blockers were discussed. The conversation lacks seriousness and doesn't provide actionable information about work progress or challenges.",
+          "result": "failure"
+        }
+      },
+      "transcriptSummary": "This brief conversation is a standup meeting between an agent and a user, with a lighthearted tone. The agent initiates the meeting with standard questions about work progress. The user playfully mentions \"taking over the world\" as yesterday's task, highlighting a mismatch in time zones. For today's plan, the user focuses on determining an appropriate bedtime. The agent adapts to the user's responses, maintaining a friendly demeanor while attempting to follow the standup format. The conversation ends abruptly mid-sentence, with the agent beginning to inquire about potential blockers."
+    },
+    "createdAt": "2025-02-23T07:28:54.195Z",
+    "id": "mlquODdgyowa01zOtrog",
+    "status": "done",
+    "transcript": [
+      {
+        "message": "Good morning! Let’s get started with today’s standup. I’ll ask you a few quick questions to check in on your progress. First up—what did you work on yesterday?",
+        "role": "agent",
+        "timeInCallSecs": 0
+      },
+      {
+        "message": "Well, hey, it's nighttime for me, by the way, but yesterday I worked on, I don't know, taking over the world.",
+        "role": "user",
+        "timeInCallSecs": 8
+      },
+      {
+        "message": "Got it! Taking over the world sounds ambitious and fun. What are you planning to work on today?",
+        "role": "agent",
+        "timeInCallSecs": 18
+      },
+      {
+        "message": "What time I should go to bed, figuring that out, that's what I'm going to work on.",
+        "role": "user",
+        "timeInCallSecs": 25
+      },
+      {
+        "message": "That sounds like a good plan for winding down after a busy day. Any blockers or...",
+        "role": "agent",
+        "timeInCallSecs": 32
+      }
+    ],
+    "userId": "user_2tPJssNuR9ZQOeXweZ9ZWIwxPx7"
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "agent_id": "C6KLHcn1GvZLLNoOtjQ1",
+  "conversation_id": "YcTQjg6GPWEViW1UO5dy",
+  "status": "done",
+  "transcript": [
+    {
+      "role": "agent",
+      "message": "Good morning! Let’s get started with today’s standup. I’ll ask you a few quick questions to check in on your progress. First up—what did you work on yesterday?",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 0,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "user",
+      "message": "I worked on dashboard feature requests.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 9,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Got it! That sounds like great progress. What are you working on today?",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 15,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 1.4189860379992751
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 1.418180893000681
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "Today I'm working on Hack 120 and Hack 122.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 19,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Great to hear you're tackling those tasks. Are there any blockers or challenges you’re facing that I should note?",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 26,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 0.5370415740035241
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 0.7479566609981703
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "I don't think so, just short on time.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 33,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Thank you for the update. Being short on time can be quite a challenge. Would you like me to notify your manager about this, or is there anything else I can do to assist you?",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 36,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 0.4786140610012808
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 0.580476148003072
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "Yeah, please notify my manager.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 47,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "I will make sure to notify your manager about the time constraints you're facing. Is there anything else I can help you with?",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 51,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 1.0647778369966545
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 1.2751477510028053
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "No, that's it. Thank you.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 58,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "You're welcome! If you need further assistance, feel free to reach out. Have a great day!",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 62,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": null,
+      "tool_calls": [
+        {
+          "request_id": "call_KgKAopsRL1Ac1zGLXpmeGQlc",
+          "tool_name": "end_call",
+          "params_as_json": "{\"reason\":\"The user has confirmed all their queries are addressed and requested to notify their manager. They indicated no further assistance is needed.\",\"message\":\"You're welcome! If you need further assistance, feel free to reach out. Have a great day!\"}",
+          "tool_has_been_called": true
+        }
+      ],
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 62,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": null,
+      "tool_calls": null,
+      "tool_results": [
+        {
+          "request_id": "call_KgKAopsRL1Ac1zGLXpmeGQlc",
+          "tool_name": "end_call",
+          "result_value": "{\"status\": \"success\", \"reason\": \"The user has confirmed all their queries are addressed and requested to notify their manager. They indicated no further assistance is needed.\", \"message\": \"You're welcome! If you need further assistance, feel free to reach out. Have a great day!\"}",
+          "is_error": false,
+          "tool_has_been_called": true
+        }
+      ],
+      "feedback": null,
+      "time_in_call_secs": 62,
+      "conversation_turn_metrics": null
+    }
+  ],
+  "metadata": {
+    "start_time_unix_secs": 1740292427,
+    "call_duration_secs": 67,
+    "cost": 446,
+    "deletion_settings": {
+      "deletion_time_unix_secs": 1803364494,
+      "deleted_logs_at_time_unix_secs": null,
+      "deleted_audio_at_time_unix_secs": null,
+      "deleted_transcript_at_time_unix_secs": null,
+      "delete_transcript_and_pii": true,
+      "delete_audio": true
+    },
+    "feedback": {
+      "overall_score": null,
+      "likes": 0,
+      "dislikes": 0
+    },
+    "authorization_method": "signed_url",
+    "charging": {
+      "dev_discount": false
+    },
+    "termination_reason": "end_call tool was called."
+  },
+  "analysis": {
+    "evaluation_criteria_results": {
+      "verify_standup_completion": {
+        "criteria_id": "verify_standup_completion",
+        "result": "success",
+        "rationale": "The conversation meets all success criteria. All three questions were answered: yesterday's work (dashboard feature requests), today's work (Hack 120 and Hack 122), and blockers (short on time). Responses were clear and relevant. The blocker was acknowledged, and the assistant offered to notify the manager. No unresolved issues were left hanging, as the assistant confirmed they would notify the manager about the time constraints."
+      }
+    },
+    "data_collection_results": {
+      "standup_responses": {
+        "data_collection_id": "standup_responses",
+        "value": "1. What did you work on yesterday?\nI worked on dashboard feature requests.\n\n2. What are you working on today?\nToday I'm working on Hack 120 and Hack 122.\n\n3. Do you have any blockers?\nI don't think so, just short on time.",
+        "json_schema": {
+          "type": "string",
+          "description": "Extract the developer’s responses to the three standup questions:  \n1. What did you work on yesterday?  \n2. What are you working on today?  \n3. Do you have any blockers?  \n\nEnsure responses are mapped to the correct question.",
+          "dynamic_variable": ""
+        },
+        "rationale": "The conversation contains clear responses to all three standup questions. The user directly answered each question asked by the agent, allowing for easy extraction of the relevant information. The responses are mapped to the correct questions as follows:\n1. 'I worked on dashboard feature requests.' in response to 'what did you work on yesterday?'\n2. 'Today I'm working on Hack 120 and Hack 122.' in response to 'What are you working on today?'\n3. 'I don't think so, just short on time.' in response to 'Are there any blockers or challenges you're facing that I should note?'\nThese responses provide a concise summary of the developer's standup update."
+      },
+      "sentiment": {
+        "data_collection_id": "sentiment",
+        "value": "Neutral",
+        "json_schema": {
+          "type": "string",
+          "description": "Analyze and extract the overall sentiment of the developer’s responses.  \nClassify as: `\"Positive\"`, `\"Neutral\"`, or `\"Negative\"`. ",
+          "dynamic_variable": ""
+        },
+        "rationale": "The developer's responses in this conversation are generally neutral in tone. They provide straightforward answers to the agent's questions without expressing strong positive or negative emotions. The developer mentions working on dashboard feature requests, Hack 120, and Hack 122, and indicates being short on time. While there's a slight hint of stress due to time constraints, the overall sentiment doesn't lean strongly towards positive or negative. The developer's final response of 'No, that's it. Thank you.' is polite but neutral. Therefore, the overall sentiment is classified as 'Neutral'."
+      },
+      "blockers": {
+        "data_collection_id": "blockers",
+        "value": "Short on time",
+        "json_schema": {
+          "type": "string",
+          "description": "Extract any blockers or challenges mentioned by the developer.  \nIf no blockers are stated, return `\"None\"` or `\"No blockers\"`. ",
+          "dynamic_variable": ""
+        },
+        "rationale": "The developer explicitly mentions a challenge in the conversation. When asked about blockers or challenges, the user responds with 'I don't think so, just short on time.' This indicates that while there are no specific blockers, being short on time is a challenge the developer is facing. The assistant acknowledges this as a challenge by saying 'Being short on time can be quite a challenge.' Therefore, the extracted challenge is 'Short on time'."
+      },
+      "follow_up_actions": {
+        "data_collection_id": "follow_up_actions",
+        "value": "Notify Manager",
+        "json_schema": {
+          "type": "string",
+          "description": "Identify any follow-up actions mentioned in the standup.  \nCommon actions include:  \n- **\"Notify Manager\"** – If a blocker or issue needs escalation.  \n- **\"Schedule Follow-up\"** – If further discussion is needed.  \n- **\"Re-run Standup\"** – If responses were incomplete.  \n\nIf no follow-up action is required, return `\"None\"`. ",
+          "dynamic_variable": ""
+        },
+        "rationale": "The conversation clearly indicates a follow-up action of 'Notify Manager'. This is evident from the user's response 'Yeah, please notify my manager' when the assistant asks if they should notify the manager about the time constraints. The assistant then confirms this action by stating 'I will make sure to notify your manager about the time constraints you're facing.' Therefore, the appropriate follow-up action extracted from this standup conversation is 'Notify Manager'."
+      },
+      "engagement_level": {
+        "data_collection_id": "engagement_level",
+        "value": "Moderately Engaged",
+        "json_schema": {
+          "type": "string",
+          "description": "Assess the developer's engagement level based on their responses.  \nClassify as one of the following:  \n- **\"Highly Engaged\"** – Provides detailed responses with enthusiasm.  \n- **\"Moderately Engaged\"** – Answers all questions but with minimal detail.  \n- **\"Low Engagement\"** – Provides vague or minimal responses.  \n- **\"Unclear\"** – Unable to determine engagement level from the transcript.",
+          "dynamic_variable": ""
+        },
+        "rationale": "Based on the transcript, the developer's engagement level can be classified as 'Moderately Engaged'. The developer answers all questions but provides minimal detail in their responses. For example, when asked about yesterday's work, they simply state 'I worked on dashboard feature requests' without elaborating. Similarly, for today's tasks, they briefly mention 'Today I'm working on Hack 120 and Hack 122' without additional context. When asked about blockers, they respond with a short 'I don't think so, just short on time'. The developer's responses are consistent and to the point, but lack enthusiasm or detailed explanations, which aligns with the 'Moderately Engaged' classification."
+      }
+    },
+    "call_successful": "success",
+    "transcript_summary": "The conversation summarizes a daily standup meeting between an agent and a team member. The team member reported working on dashboard feature requests the previous day and planned to focus on Hack 120 and Hack 122 for the current day. When asked about challenges, the team member mentioned being short on time. The agent offered to notify the manager about this time constraint, which the team member accepted. The standup concluded with the agent confirming they would inform the manager and offering further assistance if needed. The overall tone was professional and efficient, with the agent demonstrating attentiveness to the team member's needs and proactively offering support for the reported time pressure."
+  },
+  "conversation_initiation_client_data": {
+    "conversation_config_override": {
+      "agent": null,
+      "tts": null
+    },
+    "custom_llm_extra_body": {},
+    "dynamic_variables": {}
+  }
+}

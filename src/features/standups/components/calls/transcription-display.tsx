@@ -1,4 +1,4 @@
-import { ConversationMessage } from '@/features/standup-calls/types';
+import { ConversationMessage } from '@/features/standups/types';
 
 interface TranscriptionDisplayProps {
   transcription: ConversationMessage[];

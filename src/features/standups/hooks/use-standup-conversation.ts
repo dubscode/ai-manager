@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 
-import { ConversationMessage } from '@/features/standup-calls/types';
+import { ConversationMessage } from '@/features/standups/types';
 import { useConversation } from '@11labs/react';
 
 export function useStandupConversation() {
