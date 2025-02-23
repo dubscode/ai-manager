@@ -11,6 +11,8 @@ import {
   uuid,
 } from 'drizzle-orm/pg-core';
 
+import { relations } from 'drizzle-orm';
+
 // Users table
 export const users = pgTable('users', {
   id: text('id').primaryKey().notNull(),
@@ -121,7 +123,6 @@ export const actions = pgTable(
   ]
 );
 
-// Conversations table
 export const conversations = pgTable('conversations', {
   id: text('id').primaryKey().notNull(),
   agentId: text('agent_id').notNull(),
@@ -133,3 +134,31 @@ export const conversations = pgTable('conversations', {
     .notNull(),
   createdAt: timestamp('created_at').defaultNow(),
 });
+
+// Define relations
+export const standupsRelations = relations(standups, ({ many }) => ({
+  blockers: many(blockers),
+  actions: many(actions),
+  responses: many(responses),
+}));
+
+export const blockersRelations = relations(blockers, ({ one }) => ({
+  standup: one(standups, {
+    fields: [blockers.standupId],
+    references: [standups.id],
+  }),
+}));
+
+export const actionsRelations = relations(actions, ({ one }) => ({
+  standup: one(standups, {
+    fields: [actions.standupId],
+    references: [standups.id],
+  }),
+}));
+
+export const responsesRelations = relations(responses, ({ one }) => ({
+  standup: one(standups, {
+    fields: [responses.standupId],
+    references: [standups.id],
+  }),
+}));
