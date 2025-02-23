@@ -6,23 +6,27 @@ export type TranscriptEntry = {
 
 type Result = 'success' | 'failure' | 'unknown';
 
-type DataResult = {
-  dataCollectionId: string;
-  rationale: string;
-  value: string | number | boolean;
-};
-
-type EvaluationResult = {
-  criteriaId: string;
-  rationale: string;
-  result: Result;
-};
-
 export type ConversationAnalysis = {
   callSuccessful: Result;
   transcriptSummary?: string;
-  evaluationResults?: EvaluationResult[];
-  dataResults?: DataResult[];
+  evaluationResults?: {
+    [x: string]: {
+      criteria_id: string;
+      result: Result;
+      rationale: string;
+    };
+  };
+  dataResults?: {
+    [x: string]: {
+      rationale: string;
+      data_collection_id: string;
+      value?: unknown;
+    };
+  };
 };
 
-export type ConversationTranscript = TranscriptEntry[];
+export type ConversationTranscript = {
+  role: 'user' | 'agent';
+  timeInCallSecs: number;
+  message: string;
+}[];

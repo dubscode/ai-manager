@@ -8,6 +8,7 @@ export function useStandupConversation() {
   const [currentStep] = useState(1);
   const totalSteps = 3;
   const standupIdRef = useRef<string | null>(null);
+  const conversationIdRef = useRef<string | null>(null);
 
   const conversation = useConversation({
     onConnect: async () => {
@@ -36,6 +37,7 @@ export function useStandupConversation() {
             },
             body: JSON.stringify({
               id: standupIdRef.current,
+              conversationId: conversationIdRef.current,
               status: 'completed',
             }),
           });
@@ -65,6 +67,7 @@ export function useStandupConversation() {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       const signedUrl = await getSignedUrl();
       const conversationId = await conversation.startSession({ signedUrl });
+      conversationIdRef.current = conversationId;
 
       // Create a conversation record
       await fetch('/api/conversations', {

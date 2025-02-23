@@ -1,8 +1,9 @@
-import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
 import { db } from '@/db';
-import { eq } from 'drizzle-orm';
 import { standups } from '@/db/schema';
+import { inngest } from '@/lib/inngest';
+import { auth } from '@clerk/nextjs/server';
+import { eq } from 'drizzle-orm';
+import { NextResponse } from 'next/server';
 
 export async function POST() {
   try {
@@ -38,6 +39,13 @@ export async function PATCH(request: Request) {
     }
 
     const { id, conversationId, status } = await request.json();
+
+    await inngest.send({
+      name: 'conversation/update',
+      data: {
+        conversationId,
+      },
+    });
 
     // Update the standup record
     const [updatedStandup] = await db
