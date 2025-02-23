@@ -20,6 +20,7 @@ export const users = pgTable('users', {
   name: text('name').notNull(),
   role: text('role', { enum: ['developer', 'manager'] }).notNull(),
   createdAt: timestamp('created_at').defaultNow(),
+  managerEmail: text('manager_email'),
 });
 
 // Standups table
