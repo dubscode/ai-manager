@@ -19,6 +19,9 @@ export const standups = pgTable('standups', {
   userId: text('user_id')
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
+  conversationId: text('conversation_id').references(() => conversations.id, {
+    onDelete: 'cascade',
+  }),
   status: text('status', {
     enum: ['scheduled', 'in_progress', 'completed', 'missed'],
   }).notNull(),
@@ -78,10 +81,7 @@ export const conversations = pgTable('conversations', {
   id: text('id').primaryKey().notNull(),
   agentId: text('agent_id').notNull(),
   status: text('status', { enum: ['processing', 'done'] }).notNull(),
-  transcript: jsonb('transcript')
-    .$type<ConversationTranscript>()
-    .default([])
-    .notNull(),
+  transcript: jsonb('transcript').$type<ConversationTranscript>().default([]),
   analysis: jsonb('analysis').$type<ConversationAnalysis>(),
   userId: text('user_id')
     .references(() => users.id, { onDelete: 'cascade' })
