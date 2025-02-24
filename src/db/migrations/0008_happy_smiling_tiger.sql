@@ -1,0 +1,1 @@
+ALTER TABLE "users" ADD COLUMN "linear_api_key" text;

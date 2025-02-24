@@ -6,8 +6,9 @@ import { eq } from 'drizzle-orm';
 import { users } from '@/db/schema';
 import { z } from 'zod';
 
-const UpdateManagerEmailSchema = z.object({
+const UpdateSettingsSchema = z.object({
   managerEmail: z.string().email('Please enter a valid email address'),
+  linearApiKey: z.string().min(1, 'Linear API key is required'),
 });
 
 export async function getCurrentUserData() {
@@ -35,23 +36,27 @@ export async function updateManagerEmail(formData: FormData) {
 
   const rawFormData = {
     managerEmail: formData.get('managerEmail'),
+    linearApiKey: formData.get('linearApiKey'),
   };
 
-  const validatedFields = UpdateManagerEmailSchema.safeParse(rawFormData);
+  const validatedFields = UpdateSettingsSchema.safeParse(rawFormData);
 
   if (!validatedFields.success) {
-    return { error: 'Invalid email address' };
+    return { error: 'Invalid form data' };
   }
 
   try {
     await db
       .update(users)
-      .set({ managerEmail: validatedFields.data.managerEmail })
+      .set({
+        managerEmail: validatedFields.data.managerEmail,
+        linearApiKey: validatedFields.data.linearApiKey,
+      })
       .where(eq(users.id, userId));
 
     return { success: true };
   } catch (error: unknown) {
-    console.error('Failed to update manager email:', error);
-    return { error: 'Failed to update manager email' };
+    console.error('Failed to update settings:', error);
+    return { error: 'Failed to update settings' };
   }
 }
