@@ -11,6 +11,7 @@ import {
   uuid,
 } from 'drizzle-orm/pg-core';
 
+import { encryptedText } from './encrypted-text';
 import { relations } from 'drizzle-orm';
 
 // Users table
@@ -21,6 +22,7 @@ export const users = pgTable('users', {
   role: text('role', { enum: ['developer', 'manager'] }).notNull(),
   createdAt: timestamp('created_at').defaultNow(),
   managerEmail: text('manager_email'),
+  linearApiKey: encryptedText('linear_api_key'),
 });
 
 // Define users relations

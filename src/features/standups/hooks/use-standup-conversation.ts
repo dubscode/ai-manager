@@ -2,8 +2,10 @@ import { useCallback, useRef, useState } from 'react';
 
 import { ConversationMessage } from '@/features/standups/types';
 import { useConversation } from '@11labs/react';
+import { useUser } from '@clerk/nextjs';
 
 export function useStandupConversation() {
+  const { user } = useUser();
   const [transcription, setTranscription] = useState<ConversationMessage[]>([]);
   const [currentStep] = useState(1);
   const totalSteps = 3;
@@ -66,7 +68,17 @@ export function useStandupConversation() {
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       const signedUrl = await getSignedUrl();
-      const conversationId = await conversation.startSession({ signedUrl });
+      const conversationId = await conversation.startSession({
+        signedUrl,
+        dynamicVariables: {
+          domain:
+            process.env.NODE_ENV === 'production'
+              ? 'www.aimgr.dev'
+              : 'caiman-firm-dassie.ngrok-free.app',
+          userId: user?.id,
+          userName: user?.firstName,
+        },
+      });
       conversationIdRef.current = conversationId;
 
       // Create a conversation record
@@ -98,7 +110,7 @@ export function useStandupConversation() {
     } catch (error) {
       console.error('Failed to start conversation:', error);
     }
-  }, [conversation]);
+  }, [conversation, user]);
 
   const stopRecording = useCallback(async () => {
     await conversation.endSession();
