@@ -1,32 +1,21 @@
 import { StandupSummary } from '@/features/standups/components/standup-summary';
 import { auth } from '@clerk/nextjs/server';
-import { db } from '@/db';
-import { eq } from 'drizzle-orm';
+import { getStandup } from '@/features/standups/api';
 import { notFound } from 'next/navigation';
-import { standups } from '@/db/schema';
 
 interface ReportsPageProps {
-  params: {
-    standupId: string;
-  };
+  params: Promise<{ standupId: string }>;
 }
 
 export default async function ReportsPage({ params }: ReportsPageProps) {
   const { userId } = await auth();
+  const { standupId } = await params;
 
   if (!userId) {
     return null;
   }
 
-  const standup = await db.query.standups.findFirst({
-    where: eq(standups.id, params.standupId),
-    with: {
-      blockers: true,
-      actions: true,
-      responses: true,
-      user: true,
-    },
-  });
+  const standup = await getStandup(standupId);
 
   if (!standup || standup.userId !== userId) {
     notFound();

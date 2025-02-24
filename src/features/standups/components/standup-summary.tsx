@@ -1,6 +1,5 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   AlertCircle,
   Calendar,
@@ -8,55 +7,12 @@ import {
   MessageCircle,
   RefreshCcw,
 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { Button } from '@/components/ui/button';
-import { standups } from '@/db/schema';
+import { StandupWithRelations } from '@/features/standups/types';
 import { formatDistanceToNow } from 'date-fns';
-import { type InferSelectModel } from 'drizzle-orm';
 import { useState } from 'react';
-
-type StandupWithRelations = InferSelectModel<typeof standups> & {
-  blockers: {
-    id: string;
-    blocker: string;
-    sentimentScore: string;
-    confidenceScore: string;
-    emotion: 'happy' | 'frustrated' | 'confident' | 'burnout' | 'neutral';
-    linearIssue: string | null;
-    linearProject: string | null;
-    createdAt: Date | null;
-  }[];
-  actions: {
-    id: string;
-    actionType: 'notify_manager' | 'schedule_followup' | 're_run_standup';
-    actionTitle: string;
-    actionSummary: string;
-    triggeredBy: 'AI' | 'manager';
-    createdAt: Date | null;
-  }[];
-  responses: {
-    id: string;
-    question: string;
-    response: string;
-    sentimentScore: string;
-    confidenceScore: string;
-    sentiment:
-      | 'burnout'
-      | 'confident'
-      | 'frustrated'
-      | 'happy'
-      | 'negative'
-      | 'neutral'
-      | 'positive';
-    tone: 'confident' | 'hesitant' | 'frustrated' | 'excited';
-    createdAt: Date | null;
-  }[];
-  user: {
-    id: string;
-    email: string;
-    managerEmail: string | null;
-  };
-};
 
 interface StandupSummaryProps {
   standup: StandupWithRelations;
@@ -64,6 +20,10 @@ interface StandupSummaryProps {
 
 export function StandupSummary({ standup }: StandupSummaryProps) {
   const [expanded, setExpanded] = useState<string | null>(null);
+
+  if (!standup) {
+    return null;
+  }
 
   const toggleExpand = (section: string) => {
     setExpanded(expanded === section ? null : section);
