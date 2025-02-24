@@ -68,7 +68,8 @@ export function useStandupConversation() {
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       const signedUrl = await getSignedUrl();
-      const conversationId = await conversation.startSession({
+
+      const params = {
         signedUrl,
         dynamicVariables: {
           domain:
@@ -76,9 +77,13 @@ export function useStandupConversation() {
               ? 'www.aimgr.dev'
               : 'caiman-firm-dassie.ngrok-free.app',
           userId: user?.id,
-          userName: user?.firstName,
+          userName: user?.firstName ?? 'Developer',
         },
-      });
+      };
+
+      console.log('Params:', params);
+
+      const conversationId = await conversation.startSession(params);
       conversationIdRef.current = conversationId;
 
       // Create a conversation record

@@ -2,7 +2,7 @@
 
 ## 🎥 Demo Video
 
-[Watch our 2-minute demo video](placeholder_for_demo_video) showcasing AI Manager's Daily Standup feature in action!
+[Watch our 2-minute demo video](https://youtu.be/S3HERhU1Gfs?si=udMHmIz4utfLNU-b) showcasing AI Manager's Daily Standup feature in action!
 
 ## 🌟 Project Overview
 

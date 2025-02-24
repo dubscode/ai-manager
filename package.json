@@ -1,6 +1,6 @@
 {
   "name": "ai-manager",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "clerk": "ngrok http --url=caiman-firm-dassie.ngrok-free.app 3000",
@@ -14,7 +14,10 @@
     "lint": "next lint",
     "db:g": "dotenv -e .env.local -- drizzle-kit generate",
     "db:m": "dotenv -e .env.local -- drizzle-kit migrate",
-    "db:studio": "dotenv -e .env.local -- drizzle-kit studio"
+    "db:studio": "dotenv -e .env.local -- drizzle-kit studio",
+    "release": "commit-and-tag-version",
+    "release:minor": "commit-and-tag-version --release-as minor",
+    "release:major": "commit-and-tag-version --release-as major"
   },
   "dependencies": {
     "@11labs/react": "^0.0.7",
@@ -35,6 +38,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "commit-and-tag-version": "^12.5.0",
     "date-fns": "^4.1.0",
     "dotenv-cli": "^8.0.0",
     "drizzle-orm": "^0.39.3",
