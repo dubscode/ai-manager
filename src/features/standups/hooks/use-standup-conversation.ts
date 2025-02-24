@@ -72,7 +72,7 @@ export function useStandupConversation() {
         signedUrl,
         dynamicVariables: {
           domain:
-            process.env.VERCEL_ENV === 'production'
+            process.env.NODE_ENV === 'production'
               ? 'www.aimgr.dev'
               : 'caiman-firm-dassie.ngrok-free.app',
           userId: user?.id,
